@@ -5,9 +5,8 @@ import CourseList from "./components/CourseList.jsx";
 import "./App.css";
 
 export default function App() {
-  // Підйом стану: все, що впливає на відбір/сортування — тут
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState("all"); // якщо не потрібна категорія — можете прибрати
   const [sortBy, setSortBy] = useState("none");
 
   const categories = useMemo(
@@ -27,19 +26,25 @@ export default function App() {
 
     switch (sortBy) {
       case "price-asc":
-        list.sort((a, b) => b.price - a.price);
-        break;
-      case "price-desc":
         list.sort((a, b) => a.price - b.price);
         break;
-      case "pop-asc":
-        list.sort((a, b) => b.popularity - a.popularity);
+      case "price-desc":
+        list.sort((a, b) => b.price - a.price);
         break;
-      case "pop-desc":
+      case "pop-asc":
         list.sort((a, b) => a.popularity - b.popularity);
         break;
+      case "pop-desc":
+        list.sort((a, b) => b.popularity - a.popularity);
+        break;
+      case "title-asc":
+        list.sort((a, b) => a.title.localeCompare(b.title, "uk"));
+        break;
+      case "title-desc":
+        list.sort((a, b) => b.title.localeCompare(a.title, "uk"));
+        break;
       default:
-        break; 
+        break; // none
     }
 
     return list;
@@ -47,7 +52,7 @@ export default function App() {
 
   return (
     <main className="container">
-      <h1 className="course_catalog_title">Каталог курсів</h1>
+      <h1>Каталог курсів</h1>
 
       <Filters
         query={query}
@@ -59,7 +64,7 @@ export default function App() {
         onSortByChange={setSortBy}
       />
 
-      <CourseList items={visible} />
+      <CourseList items={visible} query={query} />
     </main>
   );
 }

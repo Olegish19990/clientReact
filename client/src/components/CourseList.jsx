@@ -1,9 +1,9 @@
-import CourseCard from "./CourseCard";
+import CourseCard from "./CourseCard.jsx";
 
-export default function CardList({ items }) {
+export default function CourseList({ items, query = "" }) {
   if (!items || items.length === 0) {
     return (
-      <div className="empty" role="status" aria-live="polite">
+      <div role="status" aria-live="polite" className="empty">
         Порожньо
       </div>
     );
@@ -11,9 +11,9 @@ export default function CardList({ items }) {
 
   return (
     <div className="grid">
-        {items.map(c=> (
-            <CourseCard key={c.id} {...c}/>
-        ))}
+      {items.map(c => (
+        <CourseCard key={c.id} query={query} {...c} />
+      ))}
     </div>
   );
 }

@@ -200,7 +200,12 @@ select:focus {
   color: var(--muted);
   background: #0f1320;
 }
-
+mark {
+  background: #ffe082;   /* мягкий жёлтый */
+  color: #000;           /* контрастный текст */
+  padding: 0 .15em;
+  border-radius: 3px;
+}
 
 @media (max-width: 700px) {
   .filters {
