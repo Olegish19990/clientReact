@@ -6,7 +6,7 @@ import "./App.css";
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("all"); // якщо не потрібна категорія — можете прибрати
+  const [category, setCategory] = useState("all"); 
   const [sortBy, setSortBy] = useState("none");
 
   const categories = useMemo(
